@@ -1,25 +1,45 @@
-import logo from './logo.svg';
-import './App.css';
+import GetProjects from './Components/GetProjects';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link
+} from "react-router-dom";
 
 function App() {
+  const fetchDataFromApi = async () => {
+    let result = await fetch("https://localhost:7054/api/Projects", 
+      
+    );
+
+    let data = await result.json();
+    
+    console.log(data);
+
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Router>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <Link class="navbar-brand" to="/">Tidsrapportering</Link>
+      <div>
+        <ul class="navbar-nav">
+        </ul>
+      </div>
+      </nav>
+    <Routes>
+
+    <Route path='/GetProjects'>
+    <GetProjects />
+    </Route>
+
+    {/* <Route path='/EmployeePage'>
+    <EmployeePage />
+    </Route> */}
+    
+    </Routes>
+    </Router>
+    
+  )
 }
 
 export default App;
