@@ -32,6 +32,10 @@ function GetProjects(){
         navigate.push(`/`);
     }
 
+    function Report(id) {
+        navigate.push(`/Projects/${id}`);
+    }
+
     const useStyles = makeStyles({
         table: {
           minWidth: 650,
@@ -73,18 +77,18 @@ return(
                   {item.projectName}
                 </TableCell>
                 <TableCell align="right">{item.gitHub}</TableCell>
-                <TableCell align="right">{item.company}</TableCell>
                 <TableCell align="right">{item.deadline}</TableCell>
+                <TableCell align="right">{item.company}</TableCell>
                 <TableCell align="right">{item.aktiv}</TableCell>
-                {/* <TableCell align="right">
+                <TableCell align="right">
                     <ThemeProvider theme={theme}>
                     <ButtonGroup variant="contained" color="secondary" aria-label="contained secondary button group">
-                        <Button onClick={()=>Change(item.propertyID)}>Ändra</Button>
-                        <Button onClick={()=>Delete(item.propertyID)}>Ta bort</Button>
-                        <Button onClick={()=>Interest(item.propertyID)}>Intresseanmälningar</Button>
+                        <Button onClick={()=>Report(item.projectId)}>Rapportera</Button>
+                        <Button onClick={()=>Report(item.projectId)}>Visa Rapporteringar</Button>
+                        {/* <Button onClick={()=>Interest(item.propertyID)}>Intresseanmälningar</Button> */}
                     </ButtonGroup>
                     </ThemeProvider>
-                </TableCell> */}
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>

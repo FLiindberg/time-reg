@@ -7,20 +7,21 @@ import {
 } from "react-router-dom";
 
 function App() {
-  const fetchDataFromApi = async () => {
-    let result = await fetch("https://localhost:7054/api/Projects", 
+  // const fetchDataFromApi = async () => {
+  //   let result = await fetch("https://localhost:7054/api/Projects", 
       
-    );
+  //   );
 
-    let data = await result.json();
+  //   let data = await result.json();
     
-    console.log(data);
+  //   console.log(data);
 
-  }
+  // }
   return (
     <Router>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <Link class="navbar-brand" to="/">Tidsrapportering</Link>
+      <Link class="navbar-brand" to="/GetProjects">Se Projekt</Link>
       <div>
         <ul class="navbar-nav">
         </ul>
@@ -28,13 +29,7 @@ function App() {
       </nav>
     <Routes>
 
-    <Route path='/GetProjects'>
-    <GetProjects />
-    </Route>
-
-    {/* <Route path='/EmployeePage'>
-    <EmployeePage />
-    </Route> */}
+    <Route path='/GetProjects' element={<GetProjects />} />
     
     </Routes>
     </Router>
