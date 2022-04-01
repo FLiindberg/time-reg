@@ -14,12 +14,15 @@ import ButtonGroup from '@material-ui/core/ButtonGroup';
 import { createTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 import { purple } from '@material-ui/core/colors';
+import { useParams } from 'react-router-dom';
 
 function GetProjects(){
     
+    const{id} = useParams(); 
+
     let navigate = useNavigate();
     //const propertyUrl = process.env.REACT_APP_API_URL + `Properties`
-    const projectsUrl = `https://localhost:7054/api/Projects`
+    const projectsUrl = `https://localhost:7054/api/Timereports`
     const [projects, setProjects] = useState([]);
 
     useEffect(() => {
@@ -36,13 +39,9 @@ function GetProjects(){
         navigate(`/Report/`);
     }
 
-    function ViewReport() {
-        navigate(`/ViewReports/`);
+    function DetailedReports() {
+        navigate(`/DetailedReports/`);
     }
-
-    // function ViewReport(id) {
-    //   navigate(`/ViewReports/${id}`);
-    // }
 
     const useStyles = makeStyles({
         table: {
@@ -71,10 +70,11 @@ return(
           <TableHead>
             <TableRow>
               <TableCell>Projekt</TableCell>
-              <TableCell align="right">GitHub</TableCell>
-              <TableCell align="right">Deadline</TableCell>
-              <TableCell align="right">Företag</TableCell>
-              <TableCell align="right">Aktiv</TableCell>
+              <TableCell align="right">Utbildnings Timmar</TableCell>
+              <TableCell align="right">Förberedelse Timmar</TableCell>
+              <TableCell align="right">Andra Timmar</TableCell>
+              <TableCell align="right">Efter Timmar</TableCell>
+              <TableCell align="right">Kommentar</TableCell>
               <TableCell align="right"></TableCell>
             </TableRow>
           </TableHead>
@@ -82,18 +82,18 @@ return(
           {projects.map( item => (
               <TableRow key={item.name}>
                 <TableCell component="th" scope="row">
-                  {item.projectName}
+                  {item.projectId}
                 </TableCell>
-                <TableCell align="right">{item.gitHub}</TableCell>
-                <TableCell align="right">{item.deadline}</TableCell>
-                <TableCell align="right">{item.company}</TableCell>
-                <TableCell align="right">{item.aktiv}</TableCell>
+                <TableCell align="right">{item.educationHours}</TableCell>
+                <TableCell align="right">{item.preperationHours}</TableCell>
+                <TableCell align="right">{item.other}</TableCell>
+                <TableCell align="right">{item.afterHours}</TableCell>
+                <TableCell align="right">{item.comment}</TableCell>
                 <TableCell align="right">
                     <ThemeProvider theme={theme}>
                     <ButtonGroup variant="contained" color="secondary" aria-label="contained secondary button group">
-                        <Button onClick={()=>Report()}>Rapportera</Button>
-                        <Button onClick={()=>ViewReport()}>Visa Rapporteringar</Button>
-                        {/* item.timeReportId */}
+                        <Button onClick={()=>DetailedReports()}>Ändra Rapportering</Button>
+                        <Button onClick={()=>Report()}>Ta Bort</Button>
                         {/* <Button onClick={()=>Interest(item.propertyID)}>Intresseanmälningar</Button> */}
                     </ButtonGroup>
                     </ThemeProvider>
